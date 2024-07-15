@@ -1,0 +1,6 @@
+// Modify the line to transfer a defined amount instead of the full balance
+let amount = 100; // Transfer a hardcoded amount of 100 tokens
+
+// Run cargo test to ensure the project is still working as expected
+// This will run the test suite to verify that the changes did not introduce any issues
+cargo test
