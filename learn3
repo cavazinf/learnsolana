@@ -1,0 +1,43 @@
+// Step 1: Add a new string field 'location' to the AccountState struct
+struct AccountState {
+    description: String,
+    title: String,
+    rating: u8,
+    location: String, // New field to hold location
+}
+
+// Step 2: Update the ReviewInstruction and ReviewPayload enums to include the 'location' field
+enum ReviewInstruction {
+    Update(String, String, u8, String), // Add 'location' as the fourth parameter
+    Add(String, String, u8, String),    // Add 'location' as the fourth parameter
+}
+
+// Step 3: Modify the unpack function to handle the 'location' string
+fn unpack(instruction: ReviewInstruction, account_state: &mut AccountState) {
+    match instruction {
+        ReviewInstruction::Update(description, title, rating, location) => {
+            account_state.description = description;
+            account_state.title = title;
+            account_state.rating = rating;
+            account_state.location = location; // Unpack the 'location' string
+        }
+        ReviewInstruction::Add(description, title, rating, location) => {
+            account_state.description = description;
+            account_state.title = title;
+            account_state.rating = rating;
+            account_state.location = location; // Unpack the 'location' string
+        }
+    }
+}
+
+// Step 4: Include the 'location' string in the account_data for both update and add functions
+// Assuming account_data is a struct or data type that holds the account information
+account_data {
+    title: String,
+    rating: u8,
+    description: String,
+    location: String, // New field to store location
+}
+
+// Step 5: Create a comprehensive README.md file with project details, functionalities, deployment, and interaction guide
+// Include purpose, functionalities, deployment steps, and interaction guides in the README.md file
