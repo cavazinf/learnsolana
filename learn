@@ -1,0 +1,36 @@
+// Define the CounterInstructions enum with an associated value for increment and decrement
+enum CounterInstructions {
+    Increment(u32),
+    Decrement(u32),
+}
+
+// Modify the unpack function to handle u32 values for increment and decrement
+fn unpack(instruction: CounterInstructions, counter_account: &mut CounterAccount) {
+    match instruction {
+        CounterInstructions::Update(new_value) => {
+            counter_account.counter = new_value;
+        }
+        CounterInstructions::Increment(inc_value) => {
+            counter_account.counter = counter_account.counter.saturating_add(inc_value);
+        }
+        CounterInstructions::Decrement(dec_value) => {
+            if dec_value > counter_account.counter {
+                counter_account.counter = 0;
+            } else {
+                counter_account.counter -= dec_value;
+            }
+        }
+    }
+}
+
+// Update the increment and decrement logic in lib.rs to use the u32 parameter value
+CounterInstructions::Increment(inc_value) => {
+    counter_account.counter = counter_account.counter.saturating_add(inc_value);
+}
+CounterInstructions::Decrement(dec_value) => {
+    if dec_value > counter_account.counter {
+        counter_account.counter = 0;
+    } else {
+        counter_account.counter -= dec_value;
+    }
+}
